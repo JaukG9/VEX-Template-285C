@@ -47,18 +47,24 @@ void autonSelector(void*){
     pros::screen::erase();
 
     Button* auton = nullptr;
-    /*
+    
     static Button leftAutons[] = {
-
+        Button(10, 10, 225, 105, "", pros::Color::peach_puff, pros::Color::black),
+        Button(245, 10, 225, 105, "", pros::Color::peach_puff, pros::Color::black),
+        Button(10, 125, 225, 105, "", pros::Color::peach_puff, pros::Color::black),
+        Button(245, 125, 225, 105, "", pros::Color::peach_puff, pros::Color::black)
     };
     static Button rightAutons[] = {
-
+        Button(10, 10, 225, 105, "", pros::Color::peach_puff, pros::Color::black),
+        Button(245, 10, 225, 105, "", pros::Color::peach_puff, pros::Color::black),
+        Button(10, 125, 225, 105, "", pros::Color::peach_puff, pros::Color::black),
+        Button(245, 125, 225, 105, "", pros::Color::peach_puff, pros::Color::black)
     };
-    */
+    
 
     switch(autonomousType){
-        // case 0: auton = leftAutons; break;
-        // case 1: auton = rightAutons; break;
+        case 0: auton = leftAutons; break;
+        case 1: auton = rightAutons; break;
         case 2: autonomousSelection = 0; autonSelected = true; break;
         case 3: autonomousSelection = 9; autonSelected = true; break;
     }

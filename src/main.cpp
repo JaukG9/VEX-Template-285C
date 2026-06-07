@@ -13,6 +13,7 @@
  */
 void initialize(){
 	pros::lcd::initialize();
+	chassis.calibrate();
 }
 
 /**
@@ -31,7 +32,7 @@ void disabled(){}
  * Runs the autonomous selector
  */
 void competition_initialize(){
-
+	pros::Task selector(autonSelector);
 }
 
 /**
@@ -46,7 +47,17 @@ void competition_initialize(){
  * from where it left off.
  */
 void autonomous(){
-	
+	// erase screen for autonomous start
+	pros::screen::erase();
+	autonomousSelection;
+
+	// run the selected autonomous routine
+	switch(autonomousSelection){
+		case 0: ; break;
+		case 1: ; break;
+		case 2: ; break;
+		default: break;
+	}
 }
 
 /**
@@ -66,6 +77,9 @@ void opcontrol() {
 	while (true) {
 		// tank drive
 		tank();
+
+		partner.clear();
+		partner.print(0, 0, "Battery: %d%%", 24);
 
 		pros::delay(20); // 20ms downtime
 	}
