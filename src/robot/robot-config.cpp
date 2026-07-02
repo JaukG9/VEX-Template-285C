@@ -1,10 +1,18 @@
+/* ------------------------------------------------------------------------ */
+/*																			*/
+/*		Module:			robot-config.cpp									*/
+/*		Author: 		Ayaan Goswami (285C)								*/
+/*		Created: 		July 2, 2026										*/
+/* 		Description:	Competition Template								*/
+/*																			*/
+/* ------------------------------------------------------------------------ */
+
 #include "main.h"
 #include "lemlib/api.hpp"
 #include "robot/robot-config.h"
 
-/* initialization of the controllers */
+/* initialization of the controller */
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
-pros::Controller partner(pros::E_CONTROLLER_PARTNER);
 
 /* initialization of motors & pistons */
 

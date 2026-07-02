@@ -1,3 +1,12 @@
+/* ------------------------------------------------------------------------ */
+/*																			*/
+/*		Module:			functions.cpp										*/
+/*		Author: 		Ayaan Goswami (285C)								*/
+/*		Created: 		July 2, 2026										*/
+/* 		Description:	Competition Template								*/
+/*																			*/
+/* ------------------------------------------------------------------------ */
+
 #include "main.h"
 #include "lemlib/api.hpp"
 #include "robot/drivetrain.h"
@@ -14,21 +23,12 @@
  * left joystick, and the right side of the drive train is controlled by the right joystick.
  * Down reverses the wheels, and up moves them forward. When the joysticks have unequal
  * magnitudes, the robot will turn in the direction of the one with the greater magnitude.
- * The vertical directional buttons on the controller can be used to move the drivetrain
- * at maximum speed in the forward (up arrow) or backwards (down arrow) direction.
  */
 void tank(){
     int axisL = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);  // Gets amount forward/backward from left joystick
     int axisR = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y); // Gets the turn left/right from right joystick
-    
-    // Checks if either of the vertical directional buttons are being pressed
-    if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_UP)){
-        axisL = 127 * .85;
-        axisR = 127 * .85;
-    }else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)){
-        axisL = -127 * .85;
-        axisR = -127 * .85;
-    }
 
     chassis.tank(axisL, axisR); // tank drive
 }
+
+// IMPLEMENT ANY OTHER ROBOT FUNCTIONS HERE (other drive styles like arcade, pneumatics, etc.)
