@@ -87,9 +87,10 @@ void autonomous(){
 
 	// run the selected autonomous routine
 	switch(autonomousSelection){
-		case 0: /* call your function here */; break;
-		case 1: /* call your function here */; break;
+		case 0: skills(); break;
+		case 1: skip(); break;
 		case 2: /* call your function here */; break;
+		/* add any more cases based on your number of autons */
 		default: break;
 	}
 }
@@ -120,7 +121,7 @@ void opcontrol() {
 		tank();
 
 		/* run any necessary robot functions based on controller input here */
-		
+
 
 		// 20ms downtime to prevent CPU starvation & resource exhaustion
 		pros::delay(20);
