@@ -84,6 +84,7 @@ void competition_initialize(){
 void autonomous(){
 	// erase screen for autonomous start
 	pros::screen::erase();
+	autonomousSelection;
 
 	// run the selected autonomous routine
 	switch(autonomousSelection){

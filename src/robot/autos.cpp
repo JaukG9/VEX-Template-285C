@@ -13,6 +13,9 @@
 #include "robot/functions.h"
 #include "robot/autos.h"
 
+// define here for later use
+int autonomousSelection;
+
 /**
  * @brief runs the skip autonomous.
  *
