@@ -1,3 +1,13 @@
+/* ------------------------------------------------------------------------ */
+/*																			*/
+/*		Module:			main.cpp											*/
+/*		Author: 		Ayaan Goswami (285C)								*/
+/*		Created: 		July 2, 2026										*/
+/* 		Description:	Competition Template								*/
+/*																			*/
+/* ------------------------------------------------------------------------ */
+
+// include files from PROS, LemLib, and our custom files
 #include "main.h"
 #include "lemlib/api.hpp"
 #include "robot/robot-config.h"
@@ -6,81 +16,113 @@
 #include "robot/odometry.h"
 #include "robot/autos.h"
 
-/**
- * Runs initialization code. This occurs as soon as the program is started.
- *
- * Initializes the brain, chassis, and pneumatics.
- */
+
+/* ------------------------------------------------------------------------ */
+/*                       Pre-Autonomous (Initialize)                        */
+/*                                                                          */
+/*  You may want to perform some actions before the main program starts.    */
+/*  Do them in the following function. Specifically, you can calibrate		*/
+/*  and initialize the brain, any sensors, the chassis, and pneumatics.		*/
+/*	This function is only called once, after the progam has started.        */
+/*																			*/
+/* ------------------------------------------------------------------------ */
+
 void initialize(){
+	// initialize the brain screen
 	pros::lcd::initialize();
+
+	// calibrate sensors
 	chassis.calibrate();
 }
 
-/**
- * Runs while the robot is in the disabled state of Field Management System or
- * the VEX Competition Switch, following either autonomous or opcontrol. When
- * the robot is enabled, this task will exit.
- */
+
+/* ------------------------------------------------------------------------ */
+/*                       			Disabled		                        */
+/*                       							                        */
+/*	Runs while the robot is in the disabled state of the Field Management	*/
+/*	System or the VEX Competition Switch, following either autonomous or	*/
+/*	opcontrol. When the robot is enabled, this task will exit. Use if you	*/
+/*	want to update the screen or change any variables between autonomous	*/
+/*	and driver control phases of the match.									*/
+/*                       							                        */
+/* ------------------------------------------------------------------------ */
+
 void disabled(){}
 
-/**
- * Runs after initialize(), and before autonomous when connected to the Field
- * Management System or the VEX Competition Switch. This is intended for
- * competition-specific initialization routines, such as an autonomous selector
- * on the LCD.
- *
- * Runs the autonomous selector
- */
+
+/* ------------------------------------------------------------------------ */
+/*                       	Competition Initialize                          */
+/*                                                                          */
+/*  You may want to perform some actions before the main program starts,    */
+/*  but only in 'competition' mode. Do them in the following function		*/
+/*	which will only run after initialize() and when connected with the		*/
+/*	Field Management System or the VEX Competition Switch. You may want		*/
+/*	to use this for competition-specific initialization routines, such		*/
+/*	as an autonomous selector on the LCD.									*/
+/*																			*/
+/* ------------------------------------------------------------------------ */
+
 void competition_initialize(){
+	// runs the autonomous selector
 	pros::Task selector(autonSelector);
 }
 
-/**
- * Runs the user autonomous code. This function will be started in its own task
- * with the default priority and stack size whenever the robot is enabled via
- * the Field Management System or the VEX Competition Switch in the autonomous
- * mode. Alternatively, this function may be called in initialize or opcontrol
- * for non-competition testing purposes.
- *
- * If the robot is disabled or communications is lost, the autonomous task
- * will be stopped. Re-enabling the robot will restart the task, not re-start it
- * from where it left off.
- */
+
+/* ------------------------------------------------------------------------ */
+/*                       	   Autonomous Task	                            */
+/*                                                                          */
+/* 	Runs the user autonomous code. This function will be started in its 	*/
+/*	own task with the default priority and stack size whenever the robot 	*/
+/*	is enabled via the Field Management System or the VEX Competition 		*/
+/*	Switch in the autonomous mode. Alternatively, this function may be 		*/
+/*	called in initialize or opcontrol for non-competition testing purposes.	*/
+/*																			*/
+/* 	You must modify the code to add your own robot specific commands here.	*/
+/*																			*/
+/* ------------------------------------------------------------------------ */
+
 void autonomous(){
 	// erase screen for autonomous start
 	pros::screen::erase();
-	autonomousSelection;
 
 	// run the selected autonomous routine
 	switch(autonomousSelection){
-		case 0: ; break;
-		case 1: ; break;
-		case 2: ; break;
+		case 0: /* call your function here */; break;
+		case 1: /* call your function here */; break;
+		case 2: /* call your function here */; break;
 		default: break;
 	}
 }
 
-/**
- * Runs the operator control code. This function will be started in its own task
- * with the default priority and stack size whenever the robot is enabled via
- * the Field Management System or the VEX Competition Switch in the operator
- * control mode.
- *
- * If no competition control is connected, this function will run immediately
- * following initialize().
- *
- * If the robot is disabled or communications is lost, the
- * operator control task will be stopped. Re-enabling the robot will restart the
- * task, not resume it from where it left off.
- */
+
+/* ------------------------------------------------------------------------ */
+/*                       	  User Control Task	                            */
+/*                                                                          */
+/* 	Runs the operator control code. This function will be started in its 	*/
+/*	own task with the default priority and stack size whenever the robot 	*/
+/*	is enabled via the Field Management System or the VEX Competition 		*/
+/*	Switch in the operator control mode.									*/
+/*																			*/
+/* 	You must modify the code to add your own robot specific commands here.	*/
+/*																			*/
+/* ------------------------------------------------------------------------ */
+
 void opcontrol() {
+	/* initialize any opcontrol specific variables here */
+
+
+	/* run any one-time, start of opcontrol() code here */
+
+
+	// infinite loop for inputs and robot control
 	while (true) {
-		// tank drive
+		// tank drive (you can choose to run arcade or others)
 		tank();
 
-		partner.clear();
-		partner.print(0, 0, "Battery: %d%%", 24);
+		/* run any necessary robot functions based on controller input here */
+		
 
-		pros::delay(20); // 20ms downtime
+		// 20ms downtime to prevent CPU starvation & resource exhaustion
+		pros::delay(20);
 	}
 }
