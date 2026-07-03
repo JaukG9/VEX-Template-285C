@@ -1,3 +1,4 @@
+# DO NOT TOUCH
 ARCHTUPLE=arm-none-eabi-
 DEVICE=VEX EDR V5
 

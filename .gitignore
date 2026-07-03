@@ -15,3 +15,5 @@ temp.log
 temp.errors
 *.ini
 .d/
+
+# Add any other files you would like to ignore here
