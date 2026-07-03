@@ -65,6 +65,7 @@ Everything below is left as a placeholder on purpose. Fill these in before the c
 - **`src/robot/autos.cpp`:** implement `skip()`, `skills()`, and any additional autonomous routines, then update the `autonType`, `leftAutons`, and `rightAutons` button arrays in `autonSelector()` to match your actual autos.
 - **`src/robot/functions.cpp`:** `tank()` is implemented by default; add arcade drive or other control schemes here if you'd rather use those.
 - **`src/main.cpp`:** wire each of your autonomous routines into the `switch` statement inside `autonomous()`.
+- Note that any new variables, objects, functions or other things you want to use in other files should be externed in the corresponding .h file, using the framework `extern var_type var_name` or `extern function()`. For example, the `autonomousSelection` variable is already externed in the autos.h file, through `extern int autonomousSelection` for use in the main file.
 
 ## Autonomous Selector
 
